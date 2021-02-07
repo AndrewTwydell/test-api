@@ -1,21 +1,11 @@
 pipeline {
-    agent any
-
-    stages {
-        stage('Build') {
-            steps {
-                echo 'Building from file..'
-            }
-        }
-        stage('Test') {
-            steps {
-                echo 'Testing from file..'
-            }
-        }
-        stage('Deploy') {
-            steps {
-                echo 'Deploying....'
-            }
-        }
+  agent any
+  stages {
+    stage('Checkout Scm') {
+      steps {
+        git 'https://github.com/AndrewTwydell/test-api.git'
+      }
     }
+
+  }
 }
