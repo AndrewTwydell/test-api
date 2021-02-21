@@ -1,5 +1,10 @@
 pipeline {
-  agent any
+  agent {
+    docker {
+        image 'node:12-alpine'
+        args '--tmpfs /.config -u root:root -p 3000:3000'
+    }
+  }
 
   environment {
     CI = "true"
