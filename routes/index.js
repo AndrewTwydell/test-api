@@ -1,14 +1,14 @@
-var express = require("express");
-var router = express.Router();
+const express = require("express");
+const router = express.Router();
+const {Thing} = require("../models/thing");
 
-const vscodeRouter = require("./vscodeRouter");
-
-router.use("/vscode", vscodeRouter);
-
-router.get("/", function (req, res, next) {
-  res.json({
-    message: "Hello World! Zowe Community Metrics",
-  });
-});
+router.get('/', async (req,res) => {
+  const things = await Thing.get();
+  return res.status(200).json(things);
+})
+router.post("/", async (req,res)=>{
+  const thingAdded = await Thing.insert(req.body);
+  return res.status(201).json(thingAdded);
+})
 
 module.exports = router;
