@@ -1,0 +1,14 @@
+version: '3.1'
+
+networks:
+  default:
+    external:
+      name: orbit-network
+
+services:
+  api:
+    container_name: test-api
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: always
